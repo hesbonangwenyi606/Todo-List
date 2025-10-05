@@ -3,12 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo List</title>
+  <title>Todo List with Auth</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="todo-container">
+  <div class="auth-container" id="auth-container">
+    <h1>Todo List</h1>
+
+    <!-- Sign Up Form -->
+    <div id="signup-form">
+      <h2>Sign Up</h2>
+      <input type="text" id="signup-firstname" placeholder="First Name">
+      <input type="text" id="signup-lastname" placeholder="Last Name">
+      <input type="email" id="signup-email" placeholder="Email">
+      <input type="text" id="signup-username" placeholder="Username">
+      <input type="password" id="signup-password" placeholder="Password">
+      <input type="password" id="signup-confirm-password" placeholder="Confirm Password">
+      <button id="signup-btn">Sign Up</button>
+      <p>Already have an account? <span id="show-login">Sign In</span></p>
+    </div>
+
+    <!-- Sign In Form -->
+    <div id="login-form" style="display:none;">
+      <h2>Sign In</h2>
+      <input type="text" id="login-username" placeholder="Username">
+      <input type="password" id="login-password" placeholder="Password">
+      <button id="login-btn">Sign In</button>
+      <p>Don't have an account? <span id="show-signup">Sign Up</span></p>
+    </div>
+  </div>
+
+  <!-- Todo List -->
+  <div class="todo-container" id="todo-container" style="display:none;">
     <h1>My Todo List</h1>
+    <button id="logout-btn">Logout</button>
     <input type="text" id="todo-input" placeholder="Add a new task">
     <button id="add-btn">Add</button>
     <ul id="todo-list"></ul>
