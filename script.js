@@ -9,6 +9,22 @@ const loginBtn = document.getElementById('login-btn');
 const showLogin = document.getElementById('show-login');
 const showSignup = document.getElementById('show-signup');
 const logoutBtn = document.getElementById('logout-btn');
+const greeting = document.getElementById('greeting');
+
+// ----- VIEW PASSWORD -----
+const signupShowPassword = document.getElementById('signup-show-password');
+const loginShowPassword = document.getElementById('login-show-password');
+
+signupShowPassword.addEventListener('change', () => {
+  const type = signupShowPassword.checked ? 'text' : 'password';
+  document.getElementById('signup-password').type = type;
+  document.getElementById('signup-confirm-password').type = type;
+});
+
+loginShowPassword.addEventListener('change', () => {
+  const type = loginShowPassword.checked ? 'text' : 'password';
+  document.getElementById('login-password').type = type;
+});
 
 // Toggle forms
 showLogin.addEventListener('click', () => {
@@ -33,23 +49,19 @@ signupBtn.addEventListener('click', () => {
     return alert('Please fill in all fields');
   }
 
-  // Validate email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) return alert('Please enter a valid email');
 
-  // Check passwords match
   if (password !== confirmPassword) return alert('Passwords do not match');
 
   let users = JSON.parse(localStorage.getItem('users')) || [];
   if (users.find(u => u.username === username)) return alert('Username already exists');
   if (users.find(u => u.email === email)) return alert('Email already registered');
 
-  // Save new user
   users.push({ firstName, lastName, email, username, password });
   localStorage.setItem('users', JSON.stringify(users));
   alert('Sign Up successful! Please Sign In.');
 
-  // Clear form
   signupForm.reset();
   signupForm.style.display = 'none';
   loginForm.style.display = 'block';
@@ -67,6 +79,8 @@ loginBtn.addEventListener('click', () => {
     authContainer.style.display = 'none';
     todoContainer.style.display = 'block';
     localStorage.setItem('currentUser', username);
+    localStorage.setItem('currentUserFirstName', user.firstName);
+    displayGreeting();
     loadTodos();
   } else {
     alert('Invalid credentials');
@@ -78,7 +92,14 @@ logoutBtn.addEventListener('click', () => {
   authContainer.style.display = 'block';
   todoContainer.style.display = 'none';
   localStorage.removeItem('currentUser');
+  localStorage.removeItem('currentUserFirstName');
 });
+
+// Display greeting
+function displayGreeting() {
+  const firstName = localStorage.getItem('currentUserFirstName') || '';
+  greeting.textContent = `Hello, ${firstName}! Here's your Todo List`;
+}
 
 // ----- TODO LIST -----
 const addBtn = document.getElementById('add-btn');
@@ -97,9 +118,7 @@ function loadTodos() {
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
-    deleteBtn.addEventListener('click', () => {
-      removeTodo(task);
-    });
+    deleteBtn.addEventListener('click', () => removeTodo(task));
 
     li.appendChild(deleteBtn);
     todoList.appendChild(li);

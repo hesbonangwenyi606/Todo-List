@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Authentication Forms -->
   <div class="auth-container" id="auth-container">
     <h1>Todo List</h1>
 
@@ -19,6 +20,13 @@
       <input type="text" id="signup-username" placeholder="Username">
       <input type="password" id="signup-password" placeholder="Password">
       <input type="password" id="signup-confirm-password" placeholder="Confirm Password">
+      
+      <!-- View Password Toggle -->
+      <label class="switch">
+        <input type="checkbox" id="signup-show-password">
+        <span class="slider"></span> Show Password
+      </label>
+
       <button id="signup-btn">Sign Up</button>
       <p>Already have an account? <span id="show-login">Sign In</span></p>
     </div>
@@ -28,14 +36,21 @@
       <h2>Sign In</h2>
       <input type="text" id="login-username" placeholder="Username">
       <input type="password" id="login-password" placeholder="Password">
+      
+      <!-- View Password Toggle -->
+      <label class="switch">
+        <input type="checkbox" id="login-show-password">
+        <span class="slider"></span> Show Password
+      </label>
+
       <button id="login-btn">Sign In</button>
       <p>Don't have an account? <span id="show-signup">Sign Up</span></p>
     </div>
   </div>
 
-  <!-- Todo List -->
+  <!-- Todo List Container -->
   <div class="todo-container" id="todo-container" style="display:none;">
-    <h1>My Todo List</h1>
+    <h1 id="greeting">My Todo List</h1>
     <button id="logout-btn">Logout</button>
     <input type="text" id="todo-input" placeholder="Add a new task">
     <button id="add-btn">Add</button>

@@ -4,14 +4,14 @@ body {
   margin: 0;
   height: 100vh;
   display: flex;
-  justify-content: center; /* center horizontally */
-  align-items: center;     /* center vertically */
+  justify-content: center; 
+  align-items: center;     
   background: linear-gradient(135deg, #74ebd5, #ACB6E5);
 }
 
 /* Containers */
 .auth-container, .todo-container {
-  background-color: #ffffffdd; /* slight transparency */
+  background-color: #ffffffdd; 
   padding: 35px 40px;
   border-radius: 15px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -39,7 +39,7 @@ h2 {
 }
 
 /* Inputs */
-input {
+input[type="text"], input[type="email"], input[type="password"] {
   width: 100%;
   padding: 12px 15px;
   margin-bottom: 15px;
@@ -132,4 +132,49 @@ p span:hover {
 #logout-btn:hover {
   background-color: #0056b3;
   transform: translateY(-2px);
+}
+
+/* Modern toggle switch */
+.switch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch .slider {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.switch .slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 1px;
+  top: 1px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* Toggle ON state */
+.switch input:checked + .slider {
+  background-color: #28a745;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
 }
